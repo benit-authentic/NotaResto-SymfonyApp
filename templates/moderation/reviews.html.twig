@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modération des avis{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h1 class="mb-5 fw-bold text-center">Modération des avis</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Auteur</th>
+                    <th>Message</th>
+                    <th>Note</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review.id }}</td>
+                        <td>{{ review.user.email }}</td>
+                        <td>{{ review.message }}</td>
+                        <td>{{ review.rating }}</td>
+                        <td>
+                            <!-- Ajouter les actions de modération ici -->
+                            <a href="{{ path('review_delete', {'review': review.id}) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

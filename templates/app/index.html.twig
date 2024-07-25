@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="jumbotron text-center bg-light py-5" style="background-image: url('{{ asset('uploads/pictures/731546-ephemera-le-premier-restaurant-immersif-a-p_1_2000.jpg') }}'); background-size: cover; background-position: center; position: relative;">
+    <div class="overlay" style="background: rgba(255, 255, 255, 0.8); padding: 1rem; border-radius: 20px;">
+        {% if restaurants is not empty %}
+            {% set bestRestaurant = restaurants|first %}
+            <div class="container">
+                <h1 class="display-4">Notre meilleur restaurant est...</h1>
+                <h2 class="my-4 text-primary fw-bold">{{ bestRestaurant.name }}
+                    <span class="text-warning">{{ bestRestaurant.averageRating | stars }}</span>
+                </h2>
+                <p class="lead text-muted">
+                    {{ bestRestaurant.description }}
+                </p>
+                <p>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('restaurant_show', {restaurant: bestRestaurant.id}) }}" class="btn btn-success btn-lg my-2">Donner un avis !</a>
+                    {% else %}
+                        <a href="{{ path('app_register') }}" class="btn btn-success btn-lg my-2">Créer un compte pour donner un avis !</a>
+                    {% endif %}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {% for restaurant in restaurants|slice(1) %}
+                {% set firstPicture = restaurant.restaurantPictures|first %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        {% if firstPicture is defined and firstPicture %}
+                            <img src="{{ asset('uploads/pictures/' ~ firstPicture.filename) }}" alt="{{ restaurant.name }}" class="card-img-top mb-1 rounded-top">
+                        {% else %}
+                            <img src="{{ asset('uploads/pictures/default.jpg') }}" alt="{{ restaurant.name }}" class="card-img-top mb-1 rounded-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ restaurant.name }}</h5>
+                            <p class="card-text">
+                                <span class="text-warning">{{ restaurant.averageRating | stars }}</span>
+                                <br>
+                                {{ restaurant.description }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a href="{{ path('restaurant_show', {restaurant: restaurant.id}) }}" class="btn btn-sm btn-outline-secondary">Donner un avis</a>
+                                {% else %}
+                                    <a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-secondary">Créer un compte pour donner un avis</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

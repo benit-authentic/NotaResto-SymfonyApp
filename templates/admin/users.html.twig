@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4 fw-bold text-center">Gérer les utilisateurs</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="font-size: 1.4em;">#</th>
+                        <th scope="col" style="font-size: 1.4em;">Nom</th>
+                        <th scope="col" style="font-size: 1.4em;">Prénom</th>
+                        <th scope="col" style="font-size: 1.4em;">E-mail</th>
+                        <th scope="col" style="font-size: 1.4em;">Promotion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.roles | join(', ') }}</td>
+                            <td>
+                                {% if 'ROLE_MODERATEUR' not in user.roles %}
+                                    <a href="{{ path('admin_promote_user', {'id': user.id}) }}" class="btn btn-dark">Promouvoir en modérateur</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+                        </tr>
+                    {% endfor %}                
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

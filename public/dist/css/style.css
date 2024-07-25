@@ -1,0 +1,151 @@
+.jumbotron {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+@media (min-width: 768px) {
+    .jumbotron {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+.jumbotron p:last-child {
+    margin-bottom: 0;
+}
+
+.jumbotron .container {
+    max-width: 40rem;
+}
+
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+footer p {
+    margin-bottom: .25rem;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.stars .fa-star,
+.stars .fa-star-half-alt {
+    color: gold;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    margin-bottom: 1rem;
+}
+
+.badge {
+    font-size: 1rem;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+.table .text-muted {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Custom styles for the restaurant index page */
+.jumbotron h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.jumbotron h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.card-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+.card-text {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #555;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+
+
+.jumbotron {
+    position: relative;
+    color: #333;
+}
+
+.jumbotron .overlay {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    margin: auto;
+}
+
+.jumbotron .container h1,
+.jumbotron .container h2,
+.jumbotron .container p {
+    color: #333;
+}
+
+.navbar-brand img {
+    width: 60px; 
+    height: 60px; 
+
+}

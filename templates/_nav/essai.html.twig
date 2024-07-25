@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('app_index') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo NotaResto">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav" style="font-weight: bold; font-size: 1em;">
+                
+                {% if is_granted('ROLE_RESTAURATEUR') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRestaurants" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Restaurants
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownRestaurants">
+                            <li><a class="dropdown-item" href="{{ path('restaurant_index') }}">Voir mes restaurants</a></li>
+                            <li><a class="dropdown-item" href="{{ path('restaurant_index') }}">Voir tous les restaurants</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('restaurant_new') }}">Créer un restaurant</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('restaurant_index') }}" id="navbarRestaurants" role="button" aria-expanded="false">
+                            Restaurants
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_MODERATEUR') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUtilisateurs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Modération
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownUtilisateurs">
+                            <li><a class="dropdown-item" href="{{ path('moderation_reviews') }}">Gérer les avis</a></li>
+                            <li><a class="dropdown-item" href="{{ path('moderation_users') }}">Gérer les utilisateurs</a></li>
+                            <li><a class="dropdown-item" href="{{ path('moderation_restaurants') }}">Gérer les restaurants</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                
+            </ul>
+
+            <form class="d-flex ms-auto my-2 my-lg-0" method="get" action="{{ path('app_search') }}">
+                <div class="input-group">
+                    <input class="form-control form-control-sm  border-secondary" placeholder="Rechercher par code postal" style="font-weight: bold; font-size: 1em;" type="search" name="zipcode" aria-label="Search">
+                    <button class="btn btn-outline-light btn-sm" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <ul class="navbar-nav ms-auto">
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="{{ path('app_index') }}">Bienvenue, {{ app.user.email }} !</a>
+                    </li>
+                    <li class="nav-item" style="font-weight: bold; font-size: 1em;">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item" style="font-weight: bold; font-size: 1em;">
+                        <a class="nav-link" href="{{ path('app_login') }}">Se Connecter</a>
+                    </li>
+                    <li class="nav-item" style="font-weight: bold; font-size: 1em;">
+                        <a class="nav-link" href="{{ path('app_register') }}">Créer un compte</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

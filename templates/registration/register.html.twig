@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4 fw-bold text-center">Créer un compte</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(registrationForm) }}
+                        <div class="form-group" style="font-weight: bold; font-size: 1.2em;">
+                            <div class="mb-4">
+                            {{ form_row(registrationForm.name) }}
+                            </div>
+                            <div class="mb-4">
+                            {{ form_row(registrationForm.firstname) }}
+                            </div>
+                            <div class="mb-4">
+                            {{ form_row(registrationForm.email) }}
+                            </div>
+                            <div class="mb-4">
+                            {{ form_row(registrationForm.plainPassword, { label: 'Password'}) }}
+                            </div>
+                            <div class="mt-4 mb-4">
+                            {{ form_row(registrationForm.role) }}
+                            </div>
+                            <div class="mt-4 mb-4">
+                            {{ form_row(registrationForm.agreeTerms) }}
+                            </div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-dark btn-lg fw-bold">Register</button>
+                        </div>
+                        {{ form_end(registrationForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
